@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const { create } = require("./listing");
-const { type } = require("../schema");
 const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
@@ -10,9 +8,10 @@ const reviewSchema = new Schema({
         min: 1,
         max: 5,
     },
-    createedAt: {
+    createdAt: {
         type: Date,
-        default: Date.now(),
+        // Use Date.now (function reference) so the timestamp is set at save time
+        default: Date.now,
     },
 });
 
