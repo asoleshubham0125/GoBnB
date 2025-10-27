@@ -13,6 +13,10 @@ const reviewSchema = new Schema({
         // Use Date.now (function reference) so the timestamp is set at save time
         default: Date.now,
     },
+    author:{
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    }
 });
 
 module.exports = mongoose.model("Review", reviewSchema);

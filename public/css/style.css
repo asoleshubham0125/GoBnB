@@ -138,7 +138,14 @@ body {
     align-items: space-evenly;
 }
 
+.btn-outline-dark:hover, .btn-delete-r:hover {
+  background-color: #fe424d !important;
+  border-color: #fe424d !important;
+  color: white !important; 
+}
+
 /* Error handling */
 .alert-heading{
     text-align: center !important;
 }
+
