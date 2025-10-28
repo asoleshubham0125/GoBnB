@@ -82,35 +82,36 @@ GoBnB allows users to create, browse, and review property listings with integrat
 
 ## 🧠 Project Architecture
 
+```
 GoBnB/
-├── app.js # Main application file
-├── cloudConfig.js # Cloudinary configuration
-├── middleware.js # Custom middleware
-├── schema.js # Joi validation schemas
-├── controllers/ # Route controllers
-│ ├── listings.js
-│ ├── reviews.js
-│ └── users.js
-├── models/ # Mongoose models
-│ ├── listing.js
-│ ├── review.js
-│ └── user.js
-├── routes/ # Express routes
-│ ├── listing.js
-│ ├── review.js
-│ └── user.js
-├── public/ # Static files (CSS, JS)
-│ ├── css/
-│ └── js/
-├── views/ # EJS templates
-│ ├── layouts/
-│ ├── includes/
-│ ├── listings/
-│ └── users/
+├── app.js                 # Main application file
+├── cloudConfig.js         # Cloudinary configuration
+├── middleware.js          # Custom middleware
+├── schema.js              # Joi validation schemas
+├── controllers/           # Route controllers
+│   ├── listings.js
+│   ├── reviews.js
+│   └── users.js
+├── models/                # Mongoose models
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+├── routes/                # Express routes
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+├── public/                # Static files (CSS, JS)
+│   ├── css/
+│   └── js/
+├── views/                 # EJS templates
+│   ├── layouts/
+│   ├── includes/
+│   ├── listings/
+│   └── users/
 └── utils/
-├── ExpressError.js
-└── wrapAsync.js
-
+    ├── ExpressError.js
+    └── wrapAsync.js
+```
 
 ---
 
@@ -125,3 +126,111 @@ CLOUD_API_SECRET=your_cloudinary_api_secret
 MAP_TOKEN=your_mapbox_token
 ATLASDB=your_mongodb_connection_string
 SESSION_SECRET=your_session_secret
+```
+
+---
+
+## 💻 Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/asoleshubham0125/GoBnB.git
+   cd GoBnB
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   - Create a `.env` file as shown above.
+   - Add your MongoDB, Cloudinary, and Mapbox credentials.
+
+4. **Run the application**
+   ```bash
+   npm start
+   ```
+   or for development with auto-reload:
+   ```bash
+   nodemon app.js
+   ```
+
+5. **Open in browser**
+   ```
+   http://localhost:8080
+   ```
+
+---
+
+## 🧱 Data Models
+
+### User Model
+- Username, Email
+- Hashed Password (via Passport-Local-Mongoose)
+- References to listings and reviews
+
+### Listing Model
+- Title, Description, Price
+- Location & Geometry (GeoJSON)
+- Images (URL, filename)
+- Owner reference
+- Reviews reference array
+
+### Review Model
+- Comment, Rating
+- References author & listing
+- Cascade delete on parent listing removal
+
+---
+
+## ⚡ Error Handling
+
+```js
+// Async Wrapper
+const wrapAsync = (fn) => (req, res, next) => fn(req, res, next).catch(next);
+
+// Centralized Error Handler
+app.use((err, req, res, next) => {
+  const { status = 500 } = err;
+  if (!err.message) err.message = "Something went wrong!";
+  res.status(status).render("error", { err });
+});
+```
+
+---
+
+## 🧩 Notable Implementations
+- MVC Architecture (Models–Views–Controllers)
+- RESTful Routing & Resource Management
+- Session-based Authentication
+- Cloud File Uploads (Multer + Cloudinary)
+- Mapbox Integration with GeoJSON Data
+- Data Validation & Sanitization
+- Responsive Bootstrap UI
+- Global Error Handling Middleware
+
+---
+
+## 🧑‍💻 Author
+
+**Shubham Dattatray Asole**  
+- 📧 [asoleshubham01@gmail.com](mailto:asoleshubham01@gmail.com)  
+- 🌐 [LinkedIn](https://www.linkedin.com/in/shubham-asole)  
+- 💻 [GitHub](https://github.com/asoleshubham0125)
+
+---
+
+## ⭐ Acknowledgements
+- [Colt Steele’s Web Developer Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/) for inspiration  
+- [Mapbox](https://www.mapbox.com/) for geolocation API  
+- [Cloudinary](https://cloudinary.com/) for cloud image hosting  
+
+---
+
+### 🧾 License
+This project is licensed under the **MIT License** — feel free to fork, modify, and build upon it.
+
+---
+
+> “GoBnB” demonstrates modern web development best practices with a clean MVC structure, secure authentication, and cloud integrations for a production-ready web app.
