@@ -1,236 +1,139 @@
-# 🏡 GoBnB – Full-Stack Accommodation Booking Platform
+# 🏡 GoBnB – AI-Enhanced Accommodation Booking Platform
 
-A full-stack web application inspired by Airbnb, built using **Node.js**, **Express.js**, **MongoDB**, and **EJS**.  
-GoBnB allows users to create, browse, and review property listings with integrated maps, secure authentication, and cloud-based image storage.
+> Your modern, intelligent property booking platform inspired by Airbnb — built with **Node.js**, **Express**, **MongoDB**, and **Mapbox** 🌍  
+
+![Tech Stack](https://img.shields.io/badge/Stack-MERN-blue?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Deployed on Render](https://img.shields.io/badge/Deployed-Render-purple)
+
+🔗 **[Live Demo](https://gobnb-3cmh.onrender.com)** | 💻 **[GitHub](https://github.com/asoleshubham0125/GoBnB)** | 📖 **Documentation Coming Soon**
 
 ---
 
-## 🚀 Live Demo
-🔗 **[View GoBnB on Render](https://gobnb-3cmh.onrender.com)**  
-💻 **[GitHub Repository](https://github.com/asoleshubham0125/GoBnB)**
+## ✨ Overview
+**GoBnB** is a full-stack web application designed for property listing, discovery, and booking.  
+It integrates **Mapbox** for geolocation, **Cloudinary** for media management, and **Passport.js** for secure authentication — delivering a seamless user experience similar to modern travel platforms.
+
+---
+
+## 🌟 Key Features
+
+| Category | Highlights |
+|-----------|-------------|
+| 🧑‍💻 **User System** | Secure sign-up, login, logout, session-based authentication |
+| 🏠 **Property Listings** | Create, update, delete, and view listings with pricing, location, and photos |
+| 💬 **Reviews** | Leave feedback and star ratings for properties |
+| 🗺️ **Interactive Maps** | Mapbox-powered map views with geocoding support |
+| ☁️ **Image Uploads** | Cloudinary integration with multiple image support |
+| 🧱 **Architecture** | Follows clean MVC design for scalability |
+| 🔐 **Security** | Input validation, error handling, and session management |
 
 ---
 
 ## 🧰 Tech Stack
 
-### Backend
-- **Node.js** (v22.12.0)
-- **Express.js** (v5.1.0)
-- **MongoDB** (v6.20.0) with **Mongoose** (v8.19.2)
-
-### Frontend
-- **EJS (Embedded JavaScript)** templating
-- **EJS-Mate** for layouts
-- **Bootstrap (via CDN)** for styling
-- **Custom CSS**
-
-### Authentication & Security
-- **Passport.js** with **passport-local** strategy
-- **express-session** for session management
-- **connect-flash** for flash messages
-- **Joi** for input validation
-- **bcrypt** for password hashing
-- Optional **CSRF protection** (via `csurf`)
-
-### File Uploads & Cloud Storage
-- **Multer** for handling multipart uploads
-- **Cloudinary** for image hosting & CDN delivery
-
-### Maps & Geolocation
-- **Mapbox SDK** for geocoding and interactive maps
-- Stores location data in **GeoJSON** format
+| Layer | Technologies |
+|--------|---------------|
+| **Backend** | Node.js, Express.js |
+| **Frontend** | EJS, Bootstrap, Custom CSS |
+| **Database** | MongoDB with Mongoose |
+| **Authentication** | Passport.js, express-session, connect-flash |
+| **Maps & Geolocation** | Mapbox SDK |
+| **File Storage** | Multer + Cloudinary |
+| **Validation** | Joi |
+| **Dev Tools** | nodemon, dotenv, connect-mongo, method-override |
 
 ---
 
-## 🧩 Features
+## 🚀 Quick Start
 
-### 👥 User Management
-- Register, login, and logout securely
-- Profile creation and session persistence
-- Flash messages for feedback
+```bash
+# Clone the repo
+git clone https://github.com/asoleshubham0125/GoBnB.git
+cd GoBnB
 
-### 🏠 Listing Management
-- CRUD operations for property listings
-- Upload multiple images (stored on Cloudinary)
-- Location geocoding using Mapbox
-- Interactive maps for each property
-- Price, description, and rating display
+# Install dependencies
+npm install
 
-### 💬 Review System
-- Add or delete reviews for listings
-- Star rating (1–5) and comment support
-- Cascade delete reviews when a listing is removed
+# Configure environment variables
+cp .env.example .env
 
-### 🗺️ Maps Integration
-- Dynamic Mapbox map for each listing
-- Pinpoint property location on map
-- Reverse geocoding for address lookup
+# Run the app
+npm start
 
-### 🖼️ Image Management
-- Image upload with `Multer`
-- Cloud storage via Cloudinary
-- Automatic optimization and fast delivery via CDN
-
-### 🔒 Security & Validation
-- Password hashing via `passport-local-mongoose`
-- Session handling with secure cookies
-- Server-side input validation with `Joi`
-- XSS protection via EJS escaping
-- Graceful error handling middleware
+# Visit the app
+http://localhost:8080
+```
 
 ---
 
-## 🧠 Project Architecture
-
+## 🗂️ Project Structure
 ```
 GoBnB/
-├── app.js                 # Main application file
-├── cloudConfig.js         # Cloudinary configuration
-├── middleware.js          # Custom middleware
-├── schema.js              # Joi validation schemas
-├── controllers/           # Route controllers
-│   ├── listings.js
-│   ├── reviews.js
-│   └── users.js
+├── app.js                 # Main app
 ├── models/                # Mongoose models
 │   ├── listing.js
 │   ├── review.js
 │   └── user.js
-├── routes/                # Express routes
-│   ├── listing.js
-│   ├── review.js
-│   └── user.js
-├── public/                # Static files (CSS, JS)
-│   ├── css/
-│   └── js/
+├── controllers/           # Route controllers
+├── routes/                # Express routers
+├── public/                # Static assets (CSS, JS)
 ├── views/                 # EJS templates
-│   ├── layouts/
-│   ├── includes/
-│   ├── listings/
-│   └── users/
-└── utils/
-    ├── ExpressError.js
-    └── wrapAsync.js
+└── utils/                 # Helper utilities
 ```
 
 ---
 
-## ⚙️ Environment Variables
+## 🌍 Architecture Overview
+![GoBnB Architecture](https://cdn-icons-png.flaticon.com/512/6646/6646245.png)
+> MVC architecture — Models handle data, Views render EJS templates, Controllers manage logic.
 
-Create a `.env` file in the root directory:
+---
 
+## ⚙️ Environment Setup
+
+Create a `.env` file:
 ```bash
 CLOUD_NAME=your_cloudinary_cloud_name
 CLOUD_API=your_cloudinary_api_key
 CLOUD_API_SECRET=your_cloudinary_api_secret
 MAP_TOKEN=your_mapbox_token
 ATLASDB=your_mongodb_connection_string
-SESSION_SECRET=your_session_secret
+SESSION_SECRET=your_secret_key
 ```
-
----
-
-## 💻 Installation & Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/asoleshubham0125/GoBnB.git
-   cd GoBnB
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   - Create a `.env` file as shown above.
-   - Add your MongoDB, Cloudinary, and Mapbox credentials.
-
-4. **Run the application**
-   ```bash
-   npm start
-   ```
-   or for development with auto-reload:
-   ```bash
-   nodemon app.js
-   ```
-
-5. **Open in browser**
-   ```
-   http://localhost:8080
-   ```
 
 ---
 
 ## 🧱 Data Models
-
-### User Model
-- Username, Email
-- Hashed Password (via Passport-Local-Mongoose)
-- References to listings and reviews
-
-### Listing Model
-- Title, Description, Price
-- Location & Geometry (GeoJSON)
-- Images (URL, filename)
-- Owner reference
-- Reviews reference array
-
-### Review Model
-- Comment, Rating
-- References author & listing
-- Cascade delete on parent listing removal
-
----
-
-## ⚡ Error Handling
-
-```js
-// Async Wrapper
-const wrapAsync = (fn) => (req, res, next) => fn(req, res, next).catch(next);
-
-// Centralized Error Handler
-app.use((err, req, res, next) => {
-  const { status = 500 } = err;
-  if (!err.message) err.message = "Something went wrong!";
-  res.status(status).render("error", { err });
-});
-```
+| Model | Fields | Relations |
+|--------|---------|------------|
+| **User** | username, email, password | Owns listings, reviews |
+| **Listing** | title, description, price, location, images | Has many reviews |
+| **Review** | rating, comment, author | Belongs to listing |
 
 ---
 
 ## 🧩 Notable Implementations
-- MVC Architecture (Models–Views–Controllers)
-- RESTful Routing & Resource Management
-- Session-based Authentication
-- Cloud File Uploads (Multer + Cloudinary)
-- Mapbox Integration with GeoJSON Data
-- Data Validation & Sanitization
-- Responsive Bootstrap UI
-- Global Error Handling Middleware
+- 🌐 RESTful API Design  
+- 🧠 Async Error Handling (`wrapAsync`, `ExpressError`)  
+- 🗺️ Mapbox Geocoding Integration  
+- ☁️ Cloudinary CDN for Images  
+- 🔐 Secure Authentication Flow  
+- 📦 Modular MVC Architecture  
 
 ---
 
-## 🧑‍💻 Author
-
+## 👨‍💻 Author
 **Shubham Dattatray Asole**  
-- 📧 [asoleshubham01@gmail.com](mailto:asoleshubham01@gmail.com)  
-- 🌐 [LinkedIn](https://www.linkedin.com/in/shubham-asole)  
-- 💻 [GitHub](https://github.com/asoleshubham0125)
+📧 [asoleshubham01@gmail.com](mailto:asoleshubham01@gmail.com)  
+🔗 [LinkedIn](https://www.linkedin.com/in/shubham-asole)  
+💻 [GitHub](https://github.com/asoleshubham0125)
 
 ---
 
-## ⭐ Acknowledgements
-- [Colt Steele’s Web Developer Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/) for inspiration  
-- [Mapbox](https://www.mapbox.com/) for geolocation API  
-- [Cloudinary](https://cloudinary.com/) for cloud image hosting  
+## 🧾 License
+MIT License © 2025 [Shubham Asole](https://github.com/asoleshubham0125)
 
 ---
 
-### 🧾 License
-This project is licensed under the **MIT License** — feel free to fork, modify, and build upon it.
-
----
-
-> “GoBnB” demonstrates modern web development best practices with a clean MVC structure, secure authentication, and cloud integrations for a production-ready web app.
+> 💡 “GoBnB combines modern web architecture with real-world problem-solving — showcasing scalable, secure, and interactive full-stack development.”
