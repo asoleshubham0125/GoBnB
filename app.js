@@ -40,9 +40,6 @@ main().then(()=>{
     console.log(err);
 })
 
-// app.get("/", (req, res)=>{
-//     res.send("Hi, I am route");
-// });
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
