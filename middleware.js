@@ -1,8 +1,8 @@
 const Listing = require("./models/listing");
 const Review = require("./models/reviews");
 const ExpressError = require("./utils/ExpressError");
-const listingSchema = require("./models/listing");
-const reviewSchema = require("./models/reviews");
+// Import Joi validation schemas (not the Mongoose models)
+const { listingSchema, reviewSchema } = require("./schema");
 
 module.exports.isLoggedIn = (req, res, next)=>{
     if(!req.isAuthenticated()){
@@ -34,7 +34,8 @@ module.exports.isOwner = async(req, res, next) => {
 
 // Function for JOI to validate listing
 module.exports.validateListing = (req, res, next) => {
-    let { error } = listingSchema.validate(req.body.listing);
+    // `listingSchema` expects an object shaped like { listing: { ... } }
+    let { error } = listingSchema.validate(req.body);
     // console.log(result);
     if(error){
         let errMsg = error.details.map((el) => el.message).join(",");
