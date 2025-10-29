@@ -1,4 +1,4 @@
-# 🏡 GoBnB – AI-Enhanced Accommodation Booking Platform
+# 🏡 GoBnB – Full-Stack Accommodation Booking Platform
 
 > Your modern, intelligent property booking platform inspired by Airbnb — built with **Node.js**, **Express**, **MongoDB**, and **Mapbox** 🌍  
 
